@@ -1,6 +1,14 @@
 #ifndef _MONTY_H_
 #define _MONTY_H_
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdbool.h>
+#include <ctype.h>
+
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -16,6 +24,7 @@ typedef struct stack_s
         struct stack_s *prev;
         struct stack_s *next;
 } stack_t;
+
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -29,5 +38,20 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+extern int global_var;
+
+/* Block of codes to check for general monty program errors */
+void check_usage(int argc);
+void check_file(char *filename);
+void check_file_access(FILE *fp, char *filename);
+void check_opcode(void (*opcode)(), int line_no, char *cmd);
+void check_fail(char *line, FILE *fp, stack_t *head);
+int add_to_queue(stack_t **head, int n);
+
+/* Block of operationcodes and how to check them */
+void push_(stack_t **stack, unsigned int lineno);
+void pall_(stack_t **stack, unsigned int lineno);
+void (*get_opcode_func(char *s));
 
 #endif
