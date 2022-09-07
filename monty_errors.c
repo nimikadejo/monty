@@ -62,7 +62,7 @@ void check_opcode(void (*opcode)(), int line_no, char *cmd)
 }
 
 /**
- * check_fail - checks if any form of error has been occured, 
+ * check_fail - checks if any form of error has been occured,
  * in order to stop running code
  * @line: line to free due to improper execution
  * @fp: file ptr with a return

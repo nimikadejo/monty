@@ -39,7 +39,7 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern int global_var;
+extern int global_var[];
 
 /* Block of codes to check for general monty program errors */
 void check_usage(int argc);
@@ -47,11 +47,16 @@ void check_file(char *filename);
 void check_file_access(FILE *fp, char *filename);
 void check_opcode(void (*opcode)(), int line_no, char *cmd);
 void check_fail(char *line, FILE *fp, stack_t *head);
+
+/** stack functions */
 int add_to_queue(stack_t **head, int n);
+int add_to_stack(stack_t **head, int n);
+int print_stack(stack_t **head);
+void free_stack(stack_t *head);
 
 /* Block of operationcodes and how to check them */
 void push_(stack_t **stack, unsigned int lineno);
 void pall_(stack_t **stack, unsigned int lineno);
-void (*get_opcode_func(char *s));
+void (*get_opcode_func(char *s))(stack_t **stack, unsigned int lineno);
 
 #endif

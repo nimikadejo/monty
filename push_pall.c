@@ -15,7 +15,7 @@ void push_(stack_t **stack, unsigned int lineno)
 		result = add_to_queue(stack, global_var[0]);
 	if (result < 0)
 	{
-		printf("L%d: usage: push integer\n", ln);
+		printf("L%d: usage: push integer\n", lineno);
 		global_var[2] = 1;
 		return;
 	}

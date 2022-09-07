@@ -11,21 +11,6 @@ void (*get_opcode_func(char *s))(stack_t **stack, unsigned int lineno)
 	instruction_t stack_queue[] = {
 		{"pall", pall_},
 		{"push", push_},
-/*		{"pop", pop_},
-		{"add", add_},
-		{"swap", swap_},
-		{"pint", pint_},
-		{"nop", nop_},
-		{"pchar", pchar_},
-		{"pstr", pstr_},
-		{"rotl", rotl_},
-		{"rotr", rotr_},
-		{"sub", sub_},
-		{"div", div_},
-		{"mul", mul_},
-		{"mod", mod_},
-		{"queue", queue_},
-		{"stack", stack_},*/
 		{NULL, NULL}
 	};
 
