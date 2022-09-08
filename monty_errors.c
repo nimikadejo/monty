@@ -1,10 +1,11 @@
 #include "monty.h"
 
 /**
- * check_usage - checks whether correct arguments are given
+ * check_argc - Function to check whether correct # arguments are given
  * @argc: argument count
  */
-void check_usage(int argc)
+
+void check_argc(int argc)
 {
 	if (argc != 2)
 	{
@@ -14,17 +15,18 @@ void check_usage(int argc)
 }
 
 /**
- * check_file - Checks if file given can be opened
+ * check_valid_file - Check if file given is valid
  * @filename: path to file
  */
-void check_file(char *filename)
-{
-	char *file_ext;
 
-	file_ext = strrchr(filename, '.');
-	if (file_ext == NULL)
+void check_valid_file(char *filename)
+{
+	char *ext;
+
+	ext = strrchr(filename, '.');
+	if (ext == NULL)
 		return;
-	if (!(strcmp(".txt", file_ext) == 0 || strcmp(".m", file_ext) == 0))
+	if (!(strcmp(".txt", ext) == 0 || strcmp(".m", ext) == 0))
 	{
 		printf("Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
@@ -32,11 +34,12 @@ void check_file(char *filename)
 }
 
 /**
- * check_file_access - Checks if the file can be opened/accessed
- * @fp: file pointer with a FILE return
+ * check_file_stream - Check if file stream is valid
+ * @fp: file stream
  * @filename: name of file
  */
-void check_file_access(FILE *fp, char *filename)
+
+void check_file_stream(FILE *fp, char *filename)
 {
 	if (fp == NULL)
 	{
@@ -46,32 +49,33 @@ void check_file_access(FILE *fp, char *filename)
 }
 
 /**
- * check_opcode - Checks if opcode function pointer is NULL
- * @opcode: the opcode function pointer
- * @line_no: error line number
- * @cmd: pointer to the command given
+ * check_opcode - Check if opcode function pointer is NULL
+ * @opcode: opcode function pointer
+ * @lineno: line number
+ * @cmd: command given
  */
-void check_opcode(void (*opcode)(), int line_no, char *cmd)
+
+void check_opcode(void (*opcode)(), int lineno, char *cmd)
 {
 	if (opcode == NULL)
 	{
-		printf("L%d: unknown instruction %s\n", line_no, cmd);
-		global_var[2] = 1;
+		printf("L%d: unknown instruction %s\n", lineno, cmd);
+		value[2] = 1;
 		return;
 	}
 }
 
 /**
- * check_fail - checks if any form of error has been occured,
- * in order to stop running code
- * @line: line to free due to improper execution
- * @fp: file ptr with a return
- * @head: ptr to head of the stack
- * Return: return 1 on exit, Otherwise 0.
+ * check_fail - check if a fail has been raised. If so, free memory and exit
+ * @line: buffer to free
+ * @fp: file stream to close
+ * @head: head of the stack
+ * Return: return 1 if exit triggered, else 0 for false
  */
+
 void check_fail(char *line, FILE *fp, stack_t *head)
 {
-	if (global_var[2] == 1)
+	if (value[2] == 1)
 	{
 		free(line);
 		fclose(fp);

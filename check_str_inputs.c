@@ -5,6 +5,7 @@
  * @str: string to check
  * Return: 1 if true or 0 if not a number string
  */
+
 int check_if_number(char *str)
 {
 	int i;
@@ -26,16 +27,17 @@ int check_if_number(char *str)
  * @lineno: line number
  * Return: 1 if success and 0 if not push
  */
+
 int check_if_push(char *tok_line[], int lineno)
 {
 	if (strcmp(tok_line[0], "push") == 0)
 	{
 		if (tok_line[1][0] != '\0' && check_if_number(tok_line[1]))
-			global_var[0] = atoi(tok_line[1]);
+			value[0] = atoi(tok_line[1]);
 		else
 		{
 			printf("L%d: usage: push integer\n", lineno);
-			global_var[2] = 1;
+			value[2] = 1;
 			return (0);
 		}
 
@@ -49,6 +51,7 @@ int check_if_push(char *tok_line[], int lineno)
  * @c: character to check
  * Return: 0 if not and 1 if it is an ascii
  */
+
 int is_ascii(int c)
 {
 	if (c < 0 || c > 127)
@@ -62,13 +65,11 @@ int is_ascii(int c)
  * Description: If opcode is stack or queue, changes the the extern value to
  * 0 if stack and 1 if queue.
  */
+
 void check_data_structure(char *opcode)
 {
 	if (strcmp(opcode, "stack") == 0)
-		global_var[1] = 0;
-	else
-	{
-		if (strcmp(opcode, "queue") == 0)
-			global_var[1] = 1;
-	}
+		value[1] = 0;
+	else if (strcmp(opcode, "queue") == 0)
+		value[1] = 1;
 }

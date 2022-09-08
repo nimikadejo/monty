@@ -6,6 +6,7 @@
  * @n: number value for the stack
  * Return: 1 if success and -1 if fail
  */
+
 int add_to_stack(stack_t **head, int n)
 {
 	stack_t *new_node;
@@ -36,6 +37,7 @@ int add_to_stack(stack_t **head, int n)
  * free_stack - frees the stack
  * @head: head of the stack
  */
+
 void free_stack(stack_t *head)
 {
 	stack_t *temp;
@@ -53,6 +55,7 @@ void free_stack(stack_t *head)
  * @head: head of the stack
  * Return: 1 if true, -1 if false
  */
+
 int delete_stack_head(stack_t **head)
 {
 	stack_t *temp;
@@ -77,6 +80,7 @@ int delete_stack_head(stack_t **head)
  * @head: head of the stack
  * Return: 1 if success and -1 if failed
  */
+
 int delete_stack_end(stack_t **head)
 {
 	stack_t *temp;
@@ -96,6 +100,7 @@ int delete_stack_end(stack_t **head)
  * @head: head of the stack
  * Return: 1 if success and 0 if not
  */
+
 int print_stack(stack_t **head)
 {
 	stack_t *temp;

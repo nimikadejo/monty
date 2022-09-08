@@ -1,18 +1,19 @@
 #include "monty.h"
 
 /**
- * sub_ - subtracts the top element of stack from the second element
+ * stk_sub - subtracts the top element of stack from the second element
  * @stack: head to the stack
- * @lineno: line number where the opcode is located
+ * @ln: line number where the opcode is located
  */
-void sub_(stack_t **stack, unsigned int lineno)
+
+void stk_sub(stack_t **stack, unsigned int ln)
 {
 	stack_t *temp, *temp2;
 
 	if ((*stack) == NULL || (*stack)->next == NULL)
 	{
-		printf("L%d: can't sub, stack too short\n", lineno);
-		global_var[2] = 1;
+		printf("L%d: can't sub, stack too short\n", ln);
+		value[2] = 1;
 		return;
 	}
 	temp = (*stack);
@@ -27,26 +28,27 @@ void sub_(stack_t **stack, unsigned int lineno)
 }
 
 /**
- * div_ - divides the second top element of stack from the top element
+ * stk_div - divides the second top element of stack from the top element
  * @stack: head to the stack
- * @lineno: line number where the opcode is located
+ * @ln: line number where the opcode is located
  */
-void div_(stack_t **stack, unsigned int lineno)
+
+void stk_div(stack_t **stack, unsigned int ln)
 {
 	stack_t *temp, *temp2;
 
 	if ((*stack) == NULL || (*stack)->next == NULL)
 	{
-		printf("L%d: can't div, stack too short\n", lineno);
-		global_var[2] = 1;
+		printf("L%d: can't div, stack too short\n", ln);
+		value[2] = 1;
 		return;
 	}
 	temp = (*stack);
 	temp2 = temp->next;
 	if (temp->n == 0)
 	{
-		printf("L%d: division by zero\n", lineno);
-		global_var[2] = 1;
+		printf("L%d: division by zero\n", ln);
+		value[2] = 1;
 		return;
 	}
 
@@ -60,18 +62,19 @@ void div_(stack_t **stack, unsigned int lineno)
 }
 
 /**
- * mul_ - multiplies the top two elements of the stack
+ * stk_mul - multiplies the top two elements of the stack
  * @stack: head to the stack
- * @lineno: line number where the opcode is located
+ * @ln: line number where the opcode is located
  */
-void mul_(stack_t **stack, unsigned int lineno)
+
+void stk_mul(stack_t **stack, unsigned int ln)
 {
 	stack_t *temp, *temp2;
 
 	if ((*stack) == NULL || (*stack)->next == NULL)
 	{
-		printf("L%d: can't mul, stack too short\n", lineno);
-		global_var[2] = 1;
+		printf("L%d: can't mul, stack too short\n", ln);
+		value[2] = 1;
 		return;
 	}
 	temp = (*stack);
@@ -86,26 +89,27 @@ void mul_(stack_t **stack, unsigned int lineno)
 }
 
 /**
- * mod_ - divides second top element by top element and gets remainder
+ * stk_mod - divides second top element by top element and gets remainder
  * @stack: head to the stack
- * @lineno: line number where the opcode is located
+ * @ln: line number where the opcode is located
  */
-void mod_(stack_t **stack, unsigned int lineno)
+
+void stk_mod(stack_t **stack, unsigned int ln)
 {
 	stack_t *temp, *temp2;
 
 	if ((*stack) == NULL || (*stack)->next == NULL)
 	{
-		printf("L%d: can't mod, stack too short\n", lineno);
-		global_var[2] = 1;
+		printf("L%d: can't mod, stack too short\n", ln);
+		value[2] = 1;
 		return;
 	}
 	temp = (*stack);
 	temp2 = temp->next;
 	if (temp->n == 0)
 	{
-		printf("L%d: division by zero\n", lineno);
-		global_var[2] = 1;
+		printf("L%d: division by zero\n", ln);
+		value[2] = 1;
 		return;
 	}
 	temp->n = temp2->n % temp->n;

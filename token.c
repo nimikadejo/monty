@@ -3,32 +3,33 @@
 /**
  * get_opcode_func - selects the correct function to perform the opcode
  * @s: opcode passed to the program
- * Return: a pointer to the function given the opcode or NULL.
+ * Return: a pointer to the function given the opcode or NULL if not found
  */
-void (*get_opcode_func(char *s))(stack_t **stack, unsigned int lineno)
+
+void (*get_opcode_func(char *s))(stack_t **stack, unsigned int ln)
 {
+
 	int i;
 	instruction_t stk[] = {
-		{"pall", pall_},
-		{"push", push_},
-		{"pop", pop_},
-		{"add", add_},
-		{"swap", swap_},
-		{"pint", pint_},
-		{"nop", nop_},
-		{"pchar", pchar_},
-		{"pstr", pstr_},
-		{"rotl", rotl_},
-		{"rotr", rotr_},
-		{"sub", sub_},
-		{"div", div_},
-		{"mul", mul_},
-		{"mod", mod_},
-		{"queue", queue_},
-		{"stack", stack_},
+		{"pall", stk_pall},
+		{"push", stk_push},
+		{"pop", stk_pop},
+		{"add", stk_add},
+		{"swap", stk_swap},
+		{"pint", stk_pint},
+		{"nop", stk_nop},
+		{"pchar", stk_pchar},
+		{"pstr", stk_pstr},
+		{"rotl", stk_rotl},
+		{"rotr", stk_rotr},
+		{"sub", stk_sub},
+		{"div", stk_div},
+		{"mul", stk_mul},
+		{"mod", stk_mod},
+		{"queue", stk_queue},
+		{"stack", stk_stack},
 		{NULL, NULL}
 	};
-
 
 	i = 0;
 	while (i < 17)

@@ -1,28 +1,27 @@
 #include "monty.h"
-#include <stdio.h>
-#include <string.h>
 
 /**
  * tokenize_line - Tokenize command and any arguments
  * @s: line to parse
  * @tokens: buffer to fill
- * Return: 1 on success, 0 otherwise
+ * Return: 1 if success, 0 if failed
  */
+
 int tokenize_line(char *s, char *tokens[])
 {
 	int i, status;
-	char *tok, *hold;
+	char *token, *hold;
 
-	tok = strtok_r(s, "\t\n", &hold);
-	status = check_if_comment(&tok);
+	token = strtok_r(s, " \t\n", &hold);
+	status = check_if_comment(&token);
 	if (status == 1)
 		return (0);
 
-	for (i = 0; tok && i < 2; i++)
+	for (i = 0; token && i < 2; i++)
 	{
-		tokens[i] = tok;
+		tokens[i] = token;
 
-		tok = strtok_r(NULL, "\t\n", &hold);
+		token = strtok_r(NULL, " \t\n", &hold);
 	}
 
 	return (1);
@@ -32,6 +31,7 @@ int tokenize_line(char *s, char *tokens[])
  * clear_strings - Reset strings in an array
  * @tokens: array of strings
  */
+
 void clear_strings(char *tokens[])
 {
 	int i;
@@ -45,6 +45,7 @@ void clear_strings(char *tokens[])
  * @s: string to check
  * Return: 1 if empty, 0 otherwise
  */
+
 int check_empty(const char *s)
 {
 	while (*s != '\0')
@@ -61,6 +62,7 @@ int check_empty(const char *s)
  * @token: pointer to token string
  * Return: 1 if comment, 0 if not a comment
  */
+
 int check_if_comment(char **token)
 {
 	if (*token[0] == '#')

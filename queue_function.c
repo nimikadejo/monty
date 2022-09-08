@@ -6,6 +6,7 @@
  * @n: number value for the queue
  * Return: 1 if success and -1 if fail
  */
+
 int add_to_queue(stack_t **head, int n)
 {
 	stack_t *new_node, *temp;

@@ -1,20 +1,20 @@
 #include "monty.h"
 
 /**
- * swap_ - swaps the value of the first two elements on the stack
+ * stk_swap - swaps the value of the first two elements on the stack
  * @stack: head to the stack
- * @lineno: line number where opcode is located
+ * @ln: line number where opcode is located
  */
 
-void swap_(stack_t **stack, unsigned int lineno)
+void stk_swap(stack_t **stack, unsigned int ln)
 {
 	stack_t *temp, *temp2;
 	int temp_value;
 
 	if ((*stack) == NULL || (*stack)->next == NULL)
 	{
-		printf("L%d: can't swap, stack too short\n", lineno);
-		global_var[2] = 1;
+		printf("L%d: can't swap, stack too short\n", ln);
+		value[2] = 1;
 		return;
 	}
 	temp = (*stack);
@@ -25,22 +25,23 @@ void swap_(stack_t **stack, unsigned int lineno)
 }
 
 /**
- * nop_ - operation does nothing
+ * stk_nop - operation does nothing
  * @stack: head to the stack
- * @lineno: line number where opcode is located
+ * @ln: line number where opcode is located
  */
-void nop_(stack_t **stack, unsigned int lineno)
+void stk_nop(stack_t **stack, unsigned int ln)
 {
 	(void) stack;
-	(void) lineno;
+	(void) ln;
 }
 
 /**
- * pchar_ - prints teh char at the top of the stack
+ * stk_pchar - prints teh char at the top of the stack
  * @stack: head to the stack
- * @lineno: line number where opcode is located
+ * @ln: line number where opcode is located
  */
-void pchar_(stack_t **stack, unsigned int lineno)
+
+void stk_pchar(stack_t **stack, unsigned int ln)
 {
 	int c;
 	stack_t *temp;
@@ -48,15 +49,15 @@ void pchar_(stack_t **stack, unsigned int lineno)
 	temp = (*stack);
 	if (temp == NULL)
 	{
-		printf("L%d: can't pchar, stack empty\n", lineno);
-		global_var[2] = 1;
+		printf("L%d: can't pchar, stack empty\n", ln);
+		value[2] = 1;
 		return;
 	}
 	c = temp->n;
 	if (!(is_ascii(c)))
 	{
-		printf("L%d: can't pchar, value out of range\n", lineno);
-		global_var[2] = 1;
+		printf("L%d: can't pchar, value out of range\n", ln);
+		value[2] = 1;
 		return;
 	}
 	putchar(c);
@@ -64,18 +65,19 @@ void pchar_(stack_t **stack, unsigned int lineno)
 }
 
 /**
- * pstr_ - prints the string starting at the stack
+ * stk_pstr - prints the string starting at the stack
  * @stack: head to the top of the stack
- * @lineno: line number of the opcode
+ * @ln: line number of the opcode
  * Description: string stops where stack is over, the value is 0 or the value
  * is not an ascii value
  */
-void pstr_(stack_t **stack, unsigned int lineno)
+
+void stk_pstr(stack_t **stack, unsigned int ln)
 {
 	stack_t *temp;
 	int c;
 
-	(void) lineno;
+	(void) ln;
 	temp = (*stack);
 	while (temp != NULL && temp->n != 0 && is_ascii(temp->n))
 	{
